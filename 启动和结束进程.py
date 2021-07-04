@@ -1,4 +1,3 @@
-
 import os
 
 os.system('taskkill /IM scrcpy.exe /F')

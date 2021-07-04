@@ -6,16 +6,16 @@ import time
 
 
 class MyMNTDevice(MNTDevice):
-    def __init__(self,ID):
-        MNTDevice.__init__(self,ID)
+    def __init__(self, ID):
+        MNTDevice.__init__(self, ID)
 
-
-    def 发送(self,内容):
+    def 发送(self, 内容):
         self.connection.send(内容)
+
 
 def 取图(窗口名称):
     # 获取后台窗口的句柄，注意后台窗口不能最小化
-    hWnd = win32gui.FindWindow(0,窗口名称)  # 窗口的类名可以用Visual Studio的SPY++工具获取
+    hWnd = win32gui.FindWindow(0, 窗口名称)  # 窗口的类名可以用Visual Studio的SPY++工具获取
     # 获取句柄窗口的大小信息
     left, top, right, bot = win32gui.GetWindowRect(hWnd)
     width = right - left
@@ -35,20 +35,17 @@ def 取图(窗口名称):
     # 保存bitmap到内存设备描述表
     saveDC.BitBlt((0, 0), (width, height), mfcDC, (0, 0), win32con.SRCCOPY)
 
-
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
     ###生成图像
-    im_PIL = Image.frombuffer('RGB',(bmpinfo['bmWidth'],bmpinfo['bmHeight']),bmpstr,'raw','BGRX')
-    #im_PIL= Image.frombuffer('RGB', (bmpinfo['bmWidth'], bmpinfo['bmHeight']), bmpstr)
-    #im_PIL =Image.frombytes('RGB',(bmpinfo['bmWidth'],bmpinfo['bmHeight']),bmpstr)
-    box = (8,31,968,511)
+    im_PIL = Image.frombuffer('RGB', (bmpinfo['bmWidth'], bmpinfo['bmHeight']), bmpstr, 'raw', 'BGRX')
+    # im_PIL= Image.frombuffer('RGB', (bmpinfo['bmWidth'], bmpinfo['bmHeight']), bmpstr)
+    # im_PIL =Image.frombytes('RGB',(bmpinfo['bmWidth'],bmpinfo['bmHeight']),bmpstr)
+    box = (8, 31, 968, 511)
     im2 = im_PIL.crop(box)
-    #im2.save('./dd2d.jpg')
+    # im2.save('./dd2d.jpg')
     win32gui.DeleteObject(saveBitMap.GetHandle())
     saveDC.DeleteDC()
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(hWnd, hWndDC)
     return im2
-
-
