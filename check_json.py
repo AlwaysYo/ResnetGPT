@@ -17,7 +17,6 @@ with open('./json/名称_操作.json', 'rb') as f:
     data = json.load(f)
     print(data)
 
-
 ## On-sereen Pointer Visualization
 # _DEVICE_ID = 'db5fece5'
 # 窗口名称="MIX 2S"
@@ -104,5 +103,3 @@ with open('./json/local_layout.json', 'w') as json_file:
 with open('./json/local_layout.json', 'rb') as f:
     data = json.load(f)
     print(data)
-
-

@@ -1,4 +1,3 @@
-
 class GPT2Config(object):
     def __init__(
             self,
@@ -19,6 +18,7 @@ class GPT2Config(object):
         self.n_head = n_head
         self.layer_norm_epsilon = layer_norm_epsilon
         self.initializer_range = initializer_range
+
 
 class TransformerConfig(object):
     def __init__(
